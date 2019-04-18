@@ -276,7 +276,7 @@ for i, col in enumerate(cols):
 ```
 
 
-![png](images/images/output_11_0.png)
+![png](images/output_11_0.png)
 
 
 Here's all the data plotted together. 
