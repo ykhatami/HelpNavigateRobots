@@ -594,34 +594,6 @@ else:
 
 ### Convert data to numpy images and apply normalization
 
-Convert input data to array of size (n_samples, height, width, n_ch).
-Here it yields (3810, 8, 16, 7)
-# Split train/test data by group_id so that train and test don't have overlapping group_id.
-# For each surface, randomly sample 20% of group_id values and assign them to test samples.
-# The rest goes to train samples. For surface=3, we have 1 group_id. So use 20% of series_id to split.
-def sample_split_by_groupID(target, test_size=0.2, seed=None):
-    if seed is not None:
-        np.random.seed(seed)
-    test_size=0.2
-    val2_gid = np.array([])
-    for k, G in target.groupby('surface'):
-        if k=='hard_tiles':   # Skip 3 since it has only 1 group.
-            continue
-        ch = np.random.choice(G['group_id'].unique(), int(max(1, test_size*G['group_id'].nunique())), replace=False )
-        val2_gid=np.append(val2_gid, ch)
-
-    #val2_sid = target.loc[target['group_id'].isin(val2_gid), 'series_id']
-    val2_sid = target.loc[target['group_id'].isin(val2_gid)].series_id.tolist()
-
-    # series_id chosen from surface=3
-    val2_sid_s3 = np.random.choice( target[target.surface=='hard_tiles'].series_id.unique(), int(max(1, test_size*target[target.surface=='hard_tiles'].series_id.nunique())) )
-
-    val2_sid = val2_sid + val2_sid_s3.tolist()
-    return val2_sid
-
-# This array contains the indices of validation samples which are grouped by group_id. Will be used later to sllice the data
-val2_sid = sample_split_by_groupID(target, 0.2)
-
 ```python
 feature_cols = sum([train.columns[train.columns.str.startswith(col)].tolist() for col in col_keywords ], [])
 
