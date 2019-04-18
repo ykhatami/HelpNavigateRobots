@@ -1498,4 +1498,4 @@ Due to this issue, I will wrap up this work at this point. This was a great lear
 Finally here's the CNN model I developed:
 
 
-![png](images/output_7_0.png)
+![png](images/model2_plot.png)
