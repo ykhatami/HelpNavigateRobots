@@ -1487,7 +1487,15 @@ plot_confusion_matrix(Y_val.argmax(axis=1), y_val_pred, le.classes_)
 
 ![png](images/output_59_0.png)
 
+## Conclusion
 
 We removed orientation features and both the train and validation accuracy dropped significantly. In my opinion this should be the baseline for optimizing the algorithm. Since on Kaggel, many people are using orientation, it is difficult to get to the leaderboard without using orientation.
 Due to this issue, I will wrap up this work at this point. This was a great learning experience for me. I have implemented an algorithm in Random Forest to tackle this issue as well. Check it out in my github account.
 
+
+## Model
+
+Finally here's the CNN model I developed:
+
+
+![png](images/output_7_0.png)
